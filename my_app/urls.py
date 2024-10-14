@@ -14,8 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+#from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include, path
+
+from my_app.settings import DEBUG
 
 
 urlpatterns = [
@@ -23,3 +26,14 @@ urlpatterns = [
     path('', include('main.urls', namespace='main')),
     path('catalog/', include('goods.urls', namespace='catalog'))
 ]
+
+
+if DEBUG:
+    urlpatterns += [
+
+        path("__debug__/", include("debug_toolbar.urls")),
+
+        ]
+        
+    
+    
